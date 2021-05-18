@@ -1,0 +1,225 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    color: black;
+
+}
+
+/*................................................color.................................................*/
+:root {
+    --color: #CAD3C8;
+    --transition: 0.5s;
+    --box-shadow: 5px 5px 10px #bcc0bb,
+        -5px -5px 10px #bcc0bb;
+    --backgraundColor:#f1f2f6;
+}
+
+.material-icons {
+    font-size: 20px !important;
+}
+
+/*.......................................................................................................*/
+body {
+    font-size: 20px;
+}
+
+.first-paraent {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+/*........................................................................................................*/
+.calculator {
+    max-width: 1230px;
+    width: 80%;
+    background-color: var(--backgraundColor);
+}
+
+/*..............................................header............................................................*/
+.calculator-header {
+    margin: 0;
+    width: 100%;
+    font-size: 1em;
+    font-weight: bold;
+    display: flex;
+    flex-direction:column;
+}
+
+.calculator__header__menu-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-item__container {
+    display: inline-flex;
+}
+
+
+.menu-item__button{
+    border: none;
+    padding: 0px 10px;
+}
+
+.menu-item__text {
+    line-height: 50px;
+    padding: 0px 10px;
+    font-weight: 900;
+    font-size: 1.5em;
+}
+
+.Me {
+    padding: 10px;
+    margin: 0px;
+    visibility: hidden;
+}
+
+.menu-item__button:hover {
+    background-color: var(--color);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+}
+
+.Me:hover {
+    background-color: var(--color);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+}
+
+
+
+.calculator__header__number-input{
+    text-align: right;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    width: 100%;
+    padding:1.1em 0em ;
+    margin-bottom: 15px;
+    margin-top: 50px;
+    /* background-color: var(--backgraundColor); */
+ }
+
+
+
+/*...................................................button memory........................................................*/
+.calculator__btn-Memory {
+    width: 100%;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-Memory__button  {
+    padding:10px 0px;
+    margin: 0;
+    width: 80px;
+    font-size: 0.6em;
+    font-weight: bold;
+    border: none;
+}
+
+.btn-Memory__button:hover {
+    background-color: var(--color);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+}
+
+.btn-Memory__button--diactive {
+    color: rgb(160, 160, 160);
+    font-weight: none;
+}
+
+.btn-Memory__button--saveMemorise{
+    margin: 0px;
+    width: 80px;
+    display: none;
+}
+
+/*...................................................button inside........................................................*/
+.calculator__btn {
+    width: 100%;
+}
+
+.btn-row{
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.row-button {
+    margin: 1px;
+    width: 24.82%;
+    padding: 1.5em;
+    border: 1px solid black;
+    text-align: center;
+    align-items: baseline;
+    font-size: 1em;
+    border: none;
+}
+
+.row-button:hover {
+    background-color: var(--color);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+}
+
+.color2 {
+    background-color: #dfe4ea;
+}
+
+.color3 {
+    background-color: #ffffff;
+    font-weight: bold;
+}
+
+.equal {
+    background-color: #70a1ff;
+}
+
+.equal:hover {
+    background-color: #538fff;
+    transition: 0.5s;
+}
+
+/*...................................................................memory and history.....................................*/
+.memory-history {
+    width: 330px;
+    background-color: #f1f2f6;
+}
+
+.memory-history__container{
+    list-style-type: none;
+}
+
+.memory-history__link{
+    display: inline-block;
+    margin: 0px;
+    padding: 10px;
+}
+
+.memory-history__link>a {
+    text-decoration: none;
+    font-size: 80%;
+    font-weight: bold;
+}
+
+.memory-history__link>a:hover {
+    color: rgba(0, 0, 0, 0.822);
+    transition: 0.5s;
+}
+
+.memory-history__link--border>a::after {
+    content: "";
+    margin-top: 5px;
+    margin-left: 1px;
+    display: block;
+    width: 60px;
+    background-color: rgb(0, 110, 255);
+}
+
+.hidden{
+    display: none;
+}

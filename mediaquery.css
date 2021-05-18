@@ -1,0 +1,93 @@
+/* first : 790 to 1200*/
+@media only screen and (min-width:790px)and (max-width:1200px) {
+
+    .memory>button {
+        font-size: 50%;
+    }
+
+}
+
+/* second : 650 to 790*/
+@media only screen and (min-width:650px)and (max-width:790px) {
+
+    .memory>button {
+        width: 20%;
+        font-size: 45%;
+    }
+
+    .Mn {
+        display: none;
+    }
+
+    .row>button {
+        margin: 1px;
+        font-size: 60%;
+    }
+
+    p {
+        height: 60%;
+        line-height: 110px;
+        font-size: 60px;
+    }
+
+
+}
+
+
+/* third: 480 to 650*/
+@media only screen and (min-width:480px)and (max-width:650px) {
+
+    .memory>button {
+        font-size: 50%;
+    }
+
+    .row>button {
+        font-size: 68%;
+    }
+
+    .btn-Memory__button--saveMemorise{
+        display: block;
+        border: none;
+    }
+
+    .Mn:hover {
+        background-color: var(--color);
+        transition: var(--transition);
+        box-shadow: var(--box-shadow);
+    }
+
+    .Me {
+        visibility: visible;
+        border: none;
+    }
+
+    .Me:hover {
+        background-color: var(--color);
+        transition: var(--transition);
+        box-shadow: var(--box-shadow);
+    }
+
+
+    .memory-history {
+        display: none;
+    }
+
+    .calculator {
+        width: 100%;
+    }
+
+    .material-icons {
+        font-size: 17px !important;
+    }
+
+    #radical {
+        font-size: 14px;
+    }
+
+    p {
+        height: 60%;
+        line-height: 100px;
+        font-size: 50px;
+    }
+
+}
