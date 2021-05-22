@@ -1,56 +1,48 @@
 'use strict'
 
 const numberButton = Array.from(document.querySelectorAll('.row-button__number'));
-const equalButton = document.querySelector('.equal');
-const backspaceButton = document.querySelector('.row-button--backspace');
-const divisionButton = document.querySelector('.row-button--division');
-let arr = [];
-let diviedArray = [];
+const oprationButton = Array.from(document.querySelectorAll('.row-button__opration'));
+const backspaceButton = document.querySelector('.row-button__key--backspace');
+const clearButton = document.querySelector('.row-button__key--clear');
+const equalButton = document.querySelector('.row-button__equal');
+let save=0;
+let data = {
+    opration: [],
+    resulte: []
+}
+
+function parse(str) {
+    return Function(`'use strict'; return (${str})`)()
+  }
 
 numberButton.forEach(element => {
-    element.addEventListener('click', showButtonClicked);
-});
-backspaceButton.addEventListener('click', deleteNumber);
-divisionButton.addEventListener('click', diviedNumber);
-equalButton.addEventListener('click', resultOfCalculations);
+    element.addEventListener('click', function(){
+        data.resulte.push(element.innerText);
+        console.log(data.resulte);
+    });
+})
 
-function showButtonClicked(e) {
-    let number = e.target
-    arr.push(number.innerText);
-    let headerNumber = document.getElementById('input-value').value = arr.join('');
-    console.log(arr)
-}
+oprationButton.forEach(element => {
+    element.addEventListener('click',function(){
+        let id=element.id;
+        data.resulte.push(id);
+    })
+})
 
-function deleteNumber() {
-    arr.pop();
-    let headerNumber = document.getElementById('input-value').value = arr.join('');
-    if (headerNumber == '') {
-        document.getElementById('input-value').value = 0;
-    }
-}
+backspaceButton.addEventListener('click',function(){
+    data.resulte.pop();
+    console.log(data.resulte);
+})
 
-function diviedNumber() {
-    let currentNumber = arr.join('');
-    let headerNumber = document.getElementById('input-value').value = 0;
-    diviedArray.push(currentNumber);
-    arr = [];
-    console.log(diviedArray);
-    divvoo()
-}
+clearButton.addEventListener('click' ,function(){
+    data.resulte=[];
+    console.log(data.resulte);
+})
 
-function resultOfCalculations() {
-    let currentNumber = arr.join('');
-    let headerNumber = document.getElementById('input-value').value = 0;
-    diviedArray.push(currentNumber);
-    arr = [];
-    console.log(diviedArray);
-    divvoo()
-}
+equalButton.addEventListener('click' , function(){
+    save = data.resulte.join('');
+    console.log(parse(save));
+})
 
-function divvoo() {
-    let total = diviedArray[0];
-    for (let i = 1; i < diviedArray.length; i++) {
-        total = total / diviedArray[i];
-    }
-    console.log(total);
-}
+  
+ 

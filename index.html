@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>calculator Windows10 </title>
+    <title>Calculator Windows10 </title>
     <link rel="stylesheet" type="text/css" href="/project5/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -57,8 +57,8 @@
                 <div class="btn-row">
                     <button class="color2 row-button"><i class="material-icons">&#37;</i></button>
                     <button class="color2 row-button">CE</button>
-                    <button class="color2 row-button">C</button>
-                    <button class="color2 row-button row-button--backspace"><i class="iconify" data-icon="ic-outline-backspace"
+                    <button class="color2 row-button row-button__key--clear">C</button>
+                    <button class="color2 row-button row-button__key--backspace"><i class="iconify" data-icon="ic-outline-backspace"
                             data-inline="false color2"></i></button>
                 </div>
 
@@ -69,7 +69,7 @@
                     <button class="color2 row-button"><i class="material-icons">
                             &radic;<i style="text-decoration:overline;" id="radical">&nbsp;X&nbsp;</i></i></button>
 
-                    <button class="color2 row-button row-button--division"><i class="material-icons"> &#247;</i></button>
+                    <button class="color2 row-button row-button__opration" id="/"><i class="material-icons"> &#247;</i></button>
 
                 </div>
 
@@ -78,7 +78,7 @@
                     <button class="color3 row-button row-button__number">7</button>
                     <button class="color3 row-button row-button__number">8</button>
                     <button class="color3 row-button row-button__number">9</button>
-                    <button class="color2 row-button"><i class="material-icons"> &#215; </i></button>
+                    <button class="color2 row-button row-button__opration" id="*"><i class="material-icons"> &#215; </i></button>
 
                 </div>
 
@@ -86,7 +86,7 @@
                     <button class="color3 row-button row-button__number">4</button>
                     <button class="color3 row-button row-button__number">5</button>
                     <button class="color3 row-button row-button__number">6</button>
-                    <button class="color2 row-button"><i class="material-icons"> &#8722; </i></button>
+                    <button class="color2 row-button row-button__opration" id="-"><i class="material-icons"> &#8722; </i></button>
 
                 </div>
 
@@ -94,7 +94,7 @@
                     <button class="color3 row-button row-button__number">1</button>
                     <button class="color3 row-button row-button__number">2</button>
                     <button class="color3 row-button row-button__number">3</button>
-                    <button class="color2 row-button"><i class="material-icons">&#43;</i></button>
+                    <button class="color2 row-button row-button__opration" id="+"><i class="material-icons">&#43;</i></button>
 
                 </div>
 
@@ -103,7 +103,7 @@
                     <button class="color3 row-button row-button__number">0</button>
                     <button class="color3 row-button row-button__number
                     ">.</button>
-                    <button class="equal row-button"><i class="material-icons">&#61;</i></button>
+                    <button class="equal row-button row-button__equal"><i class="material-icons">&#61;</i></button>
 
                 </div>
 
