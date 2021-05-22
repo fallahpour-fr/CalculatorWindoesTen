@@ -88,19 +88,29 @@ body {
 
 
 
-.calculator__header__number-input{
+.calculator__header__number-output{
     text-align: right;
     outline: none;
     border: none;
     font-size: 1em;
     width: 100%;
-    padding:1.1em 0em ;
-    margin-bottom: 15px;
+    padding:0.5em 0.2em ;
+    /* margin-bottom: 15px; */
     margin-top: 50px;
     /* background-color: var(--backgraundColor); */
  }
 
-
+ .calculator__header__number-input{
+    text-align: right;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    width: 100%;
+    padding:0.5em 0.2em ;
+    margin-bottom: 15px;
+    /* margin-top: 50px; */
+    /* background-color: var(--backgraundColor); */
+ }
 
 /*...................................................button memory........................................................*/
 .calculator__btn-Memory {

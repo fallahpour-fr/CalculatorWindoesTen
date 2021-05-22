@@ -24,7 +24,7 @@
                         </button>
 
 
-                        <span class="menu-item__text">Standard</span>
+                        <span class="menu-item__text">Scientific</span>
 
 
                         <button class="menu-item__button">
@@ -34,7 +34,8 @@
                     <button class="Me"><i class="material-icons">history</i></button>
                 </div>
 
-                <input type="text" id="input-value" class="calculator__header__number-input" value="0"></input>
+                <input type="text" id="input-value" class="calculator__header__number-output" value=""></input>
+                <input type="text" id="output-value" class="calculator__header__number-input" value="0"></input>
 
 
             </div>
@@ -56,7 +57,7 @@
             <div class="calculator__btn">
                 <div class="btn-row">
                     <button class="color2 row-button"><i class="material-icons">&#37;</i></button>
-                    <button class="color2 row-button">CE</button>
+                    <button class="color2 row-button row-button__key--clearAll">CE</button>
                     <button class="color2 row-button row-button__key--clear">C</button>
                     <button class="color2 row-button row-button__key--backspace"><i class="iconify" data-icon="ic-outline-backspace"
                             data-inline="false color2"></i></button>
@@ -103,7 +104,7 @@
                     <button class="color3 row-button row-button__number">0</button>
                     <button class="color3 row-button row-button__number
                     ">.</button>
-                    <button class="equal row-button row-button__equal"><i class="material-icons">&#61;</i></button>
+                    <button class="equal row-button row-button__equal row-button__opration" id="="><i class="material-icons">&#61;</i></button>
 
                 </div>
 
