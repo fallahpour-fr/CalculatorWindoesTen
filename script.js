@@ -7,63 +7,84 @@ const clearButton = document.querySelector('.row-button__key--clear');
 const clearAllButton = document.querySelector('.row-button__key--clearAll')
 const equalButton = document.querySelector('.row-button__equal');
 const inputHeader = document.querySelector('.calculator__header__number-input');
+const outputHeader = document.querySelector('.calculator__header__number-output')
 let save = 0;
 let data = {
     opration: [],
     resulte: []
 }
 
-function parse(str) {
-    return Function(`'use strict'; return (${str})`)()
-}
+/* ..........................................................addEvent........................................... */
 
 numberButton.forEach(element => {
-    element.addEventListener('click', function () {
-        data.resulte.push(element.innerText);
-        data.opration.push(element.innerText);
-        console.log(data.resulte);
-        inputResult();
-    });
+    element.addEventListener('click', addNumberToArray);
 })
 
 oprationButton.forEach(element => {
-    element.addEventListener('click', function () {
-        let id = element.id;
-        data.resulte.push(id);
-        data.opration.push(id);
-        if(id == '*' || id == '/'){
-            outputResult();
-            console.log('hi')
-        }
-        if(id == '+' || id == '-'){
-            outputResult2();
-            console.log('ho')
-        }
-    })
+    element.addEventListener('click', addOperationToArray)
 })
+backspaceButton.addEventListener('click', deleteNumber)
+clearButton.addEventListener('click', clearResulteNumber)
+clearAllButton.addEventListener('click', clearResulteAndOprationNumber)
+equalButton.addEventListener('click', calculate)
 
-backspaceButton.addEventListener('click', function () {
-    data.resulte.pop();
+
+/* ...........................................................function......................................................... */
+
+function changeStringToNumericalExpression(str) {
+    return Function(`'use strict'; return (${str})`)()
+}
+
+
+function addNumberToArray() {
+    data.resulte.push(element.innerText);
+    data.opration.push(element.innerText);
     console.log(data.resulte);
-})
+    inputResult();
+};
 
-clearButton.addEventListener('click', function () {
+
+function addOperationToArray() {
+    let id = element.id;
+    data.resulte.push(id);
+    data.opration.push(id);
+    if (id == '*' || id == '/') {
+        outputResult();
+        console.log('hi')
+    }
+    if (id == '+' || id == '-') {
+        outputResult2();
+        console.log('ho')
+    }
+}
+
+function deleteNumber() {
+    // data.resulte.pop();
+    // data.opration.pop()
+    console.log(data.resulte, data.opration);
+    if (data.resulte.includes('=')) {
+        document.querySelector('.calculator__header__number-output').value = '';
+
+    }
+}
+
+function clearResulteNumber() {
     data.resulte = [];
     console.log(data.resulte);
-})
+}
 
-clearAllButton.addEventListener('click' , function(){
-    data.resulte=[];
-    data.opration=[];
+function clearResulteAndOprationNumber() {
+    data.resulte = [];
+    data.opration = [];
     console.log(data.opration);
-})
+}
 
-equalButton.addEventListener('click', function () {
-    save = data.resulte.slice(0,-1).join('');
+function calculate() {
+    save = data.resulte.slice(0, -1).join('');
     let outputHeader = document.querySelector('.calculator__header__number-output').value = data.resulte.join('');
-    let inputHeader = document.querySelector('.calculator__header__number-input').value = parse(save);
-    console.log(save, parse(save));
-})
+    let inputHeader = document.querySelector('.calculator__header__number-input').value = changeStringToNumberExprission(save);
+    console.log(save, changeStringToNumberExprission(save));
+}
 
 function inputResult() {
     let inputHeader = document.querySelector('.calculator__header__number-input').value = data.opration.join('');
@@ -71,18 +92,12 @@ function inputResult() {
 
 function outputResult() {
     let outputHeader = document.querySelector('.calculator__header__number-output').value = data.resulte.join('');
-    data.opration=[];
+    data.opration = [];
 }
 
-function outputResult2(){
-    let outputHeader = document.querySelector('.calculator__header__number-output').value = data.resulte.join('');    
-    let save0 = data.resulte;
-    // console.log(save0.join(''));
-    let save2 = save0.slice(0,-1);
-    console.log(save2 ,save0);
-    let save3 = save2.join('');
-    console.log(save3);
-    console.log(parse(save3));
-    let inputHeader = document.querySelector('.calculator__header__number-input').value = parse(save3);
-    data.opration=[];
+function outputResult2() {
+    let outputHeader = document.querySelector('.calculator__header__number-output').value = data.resulte.join('');
+    let save0 = data.resulte.slice(0, -1).join('');
+    let inputHeader = document.querySelector('.calculator__header__number-input').value = changeStringToNumberExprission(save0);
+    data.opration = [];
 }
