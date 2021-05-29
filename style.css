@@ -12,7 +12,14 @@
     --transition: 0.5s;
     --box-shadow: 5px 5px 10px #bcc0bb,
         -5px -5px 10px #bcc0bb;
-    --backgraundColor:#f1f2f6;
+    --backgraundColor: #f1f2f6;
+    --MemoryAndHistoryBorderBottom: rgb(0, 140, 255);
+    --scrollColor: #888888;
+    --active-button: rgb(160, 160, 160);
+    --color2-backgraund: #dfe4ea;
+    --color3-backgraund: #ffffff;
+    --equalColorButton: #70a1ff;
+    --equalColorButtonHover: #538fff;
 }
 
 .material-icons {
@@ -43,10 +50,10 @@ body {
     font-size: 1em;
     font-weight: bold;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
 }
 
-.calculator__header__menu-item{
+.calculator__header__menu-item {
     display: flex;
     justify-content: space-between;
 }
@@ -56,7 +63,7 @@ body {
 }
 
 
-.menu-item__button{
+.menu-item__button {
     border: none;
     padding: 0px 10px;
 }
@@ -88,29 +95,29 @@ body {
 
 
 
-.calculator__header__number-output{
+.calculator__header__number-output {
     text-align: right;
     outline: none;
     border: none;
     font-size: 1em;
     width: 100%;
-    padding:0.5em 0.2em ;
+    padding: 0.5em 0.2em;
     /* margin-bottom: 15px; */
     margin-top: 50px;
     /* background-color: var(--backgraundColor); */
- }
+}
 
- .calculator__header__number-input{
+.calculator__header__number-input {
     text-align: right;
     outline: none;
     border: none;
     font-size: 1em;
     width: 100%;
-    padding:0.5em 0.2em ;
+    padding: 0.5em 0.2em;
     margin-bottom: 15px;
     /* margin-top: 50px; */
     /* background-color: var(--backgraundColor); */
- }
+}
 
 /*...................................................button memory........................................................*/
 .calculator__btn-Memory {
@@ -121,8 +128,8 @@ body {
     justify-content: space-between;
 }
 
-.btn-Memory__button  {
-    padding:10px 0px;
+.btn-Memory__button {
+    padding: 10px 0px;
     margin: 0;
     width: 80px;
     font-size: 0.6em;
@@ -137,11 +144,11 @@ body {
 }
 
 .btn-Memory__button--diactive {
-    color: rgb(160, 160, 160);
+    color: var(--active-button);
     font-weight: none;
 }
 
-.btn-Memory__button--saveMemorise{
+.btn-Memory__button--saveMemorise {
     margin: 0px;
     width: 80px;
     display: none;
@@ -152,7 +159,7 @@ body {
     width: 100%;
 }
 
-.btn-row{
+.btn-row {
     padding: 0px;
     margin: 0px;
     display: flex;
@@ -162,12 +169,13 @@ body {
 .row-button {
     margin: 1px;
     width: 24.82%;
-    padding: 1.5em;
+    padding: 1.3em;
     border: 1px solid black;
     text-align: center;
     align-items: baseline;
     font-size: 1em;
     border: none;
+    cursor: pointer;
 }
 
 .row-button:hover {
@@ -177,34 +185,53 @@ body {
 }
 
 .color2 {
-    background-color: #dfe4ea;
+    background-color: var(--color2-backgraund);
 }
 
 .color3 {
-    background-color: #ffffff;
+    background-color: var(--color3-backgraund);
     font-weight: bold;
 }
 
 .equal {
-    background-color: #70a1ff;
+    background-color: var(--equalColorButton);
 }
 
 .equal:hover {
-    background-color: #538fff;
+    background-color: var(--equalColorButtonHover);
     transition: 0.5s;
 }
 
 /*...................................................................memory and history.....................................*/
 .memory-history {
     width: 330px;
-    background-color: #f1f2f6;
+    height: 100vh;
+    background-color: var(--backgraundColor);
+    position: sticky;
+    right: 0;
+    top: 0;
+    overflow: hidden;
 }
 
-.memory-history__container{
+.memory-history::-webkit-scrollbar {
+    width: 8px;
+    min-height: 1px;
+}
+
+.memory-history::-webkit-scrollbar-thumb {
+    background-color: var(--scrollColor);
+    border-radius: 5px;
+}
+
+.memory-history:hover {
+    overflow-y: scroll;
+}
+
+.memory-history__container {
     list-style-type: none;
 }
 
-.memory-history__link{
+.memory-history__link {
     display: inline-block;
     margin: 0px;
     padding: 10px;
@@ -221,15 +248,19 @@ body {
     transition: 0.5s;
 }
 
-.memory-history__link--border>a::after {
-    content: "";
-    margin-top: 5px;
-    margin-left: 1px;
-    display: block;
-    width: 60px;
-    background-color: rgb(0, 110, 255);
+.memory-history__link--border {
+    border-bottom: 2px solid var(--MemoryAndHistoryBorderBottom);
 }
 
-.hidden{
+.hidden {
     display: none;
 }
+
+.resulteTag {
+    background-color: yellow;
+    width: 95%;
+    padding: 0.5em;
+    margin: 15px 10px;
+    text-align: right;
+}
+

@@ -9,13 +9,24 @@ const equalButton = document.querySelector('.row-button__equal');
 const inputHeader = document.querySelector('.calculator__header__number-input');
 const outputHeader = document.querySelector('.calculator__header__number-output');
 const negetiveOrPositiveBtn = document.querySelector('.row-button--NegetiveOrPositive');
+const oneDividedByNumberBtn = document.querySelector('.row-button--oneDividedByX');
+const squareOfNumberBtn = document.querySelector('.row-button--squareOfNumber');
+const radicalOfNumberBtn = document.querySelector('.row-button--radical');
+// const memoryAndHistoryLink = document.querySelector('.memory-history__link');
+const memoryLinkBtn = document.querySelector('.memoryLink');
+const historyLinkBtn = document.querySelector('.historyLink');
+const memoryHistoryResult = document.querySelector('.memory-history__result')
 let save = 0;
+let k = 0;
 let data = {
     opration: [],
     resulte: []
 }
-
-/* ..........................................................addEvent........................................... */
+let dataForMemory = {
+    opration: [],
+    resulte: []
+}
+/* ..........................................................addEventListener........................................... */
 
 numberButton.forEach(element => {
     element.addEventListener('click', addNumberToArray);
@@ -24,13 +35,19 @@ numberButton.forEach(element => {
 operatorButton.forEach(element => {
     element.addEventListener('click', addOperatorToArray)
 })
-backspaceButton.addEventListener('click', deleteNumber)
-clearButton.addEventListener('click', clearResulteNumber)
-clearAllButton.addEventListener('click', clearResulteAndOprationNumber)
-equalButton.addEventListener('click', calculate)
-negetiveOrPositiveBtn.addEventListener('click', negativeOrPositiveNumber)
+backspaceButton.addEventListener('click', deleteNumber);
+clearButton.addEventListener('click', clearResulteNumber);
+clearAllButton.addEventListener('click', clearResulteAndOprationNumber);
+equalButton.addEventListener('click', calculate);
+negetiveOrPositiveBtn.addEventListener('click', negativeOrPositiveNumber);
+oneDividedByNumberBtn.addEventListener('click', oneDividedByNumber);
+squareOfNumberBtn.addEventListener('click', squareOfNumber);
+radicalOfNumberBtn.addEventListener('click', radicalOfNumber);
+historyLinkBtn.addEventListener('click', historyFunction);
+memoryLinkBtn.addEventListener('click', memoryFunction);
 
-/* ...........................................................function......................................................... */
+/* ...........................................................function ependent to button .................................................................. */
+
 
 function changeStringToNumberExprission(str) {
     return Function(`'use strict'; return (${str})`)()
@@ -40,14 +57,25 @@ function changeStringToNumberExprission(str) {
 function addNumberToArray(e) {
     let element = e.target;
     console.log(data.resulte);
-    if (element.innerText == '.' && data.resulte.includes('.') && data.opration.includes('.')) {
+    if (data.resulte.indexOf('=')>-1) {
+        data.resulte = [];
+        data.opration = [];
+        data.resulte.push(element.innerText);
+        data.opration.push(element.innerText);
+        document.querySelector('.calculator__header__number-output').value = '';
+        console.log('equal');
+    } else if (element.innerText=='.' && data.resulte.includes('.') && data.opration.includes('.')) {
         data.resulte.push();
         data.opration.push();
     } else {
         data.resulte.push(element.innerText);
         data.opration.push(element.innerText);
+        console.log('why')
     }
-    console.log(data.resulte);
+
+
+
+    console.log(data.resulte, data.opration);
     inputResult();
 };
 
@@ -58,11 +86,11 @@ function addOperatorToArray(e) {
     data.resulte.push(id);
     data.opration.push(id);
     if (id == '*' || id == '/') {
-        outputResult();
+        outputResultClickOnMultiplicationAndDivision();
         console.log('hi')
     }
     if (id == '+' || id == '-') {
-        outputResult2();
+        outputResultClickOnAdditionAndSubtraction();
         console.log('ho')
     }
 }
@@ -78,8 +106,8 @@ function deleteNumber() {
         data.opration.push(sum);
     } else {
         data.opration.pop();
-        data.resulte.pop();
-        document.querySelector('.calculator__header__number-output').value = data.resulte.join('');
+        // data.resulte.pop();
+        // document.querySelector('.calculator__header__number-output').value = data.resulte.join('');
         document.querySelector('.calculator__header__number-input').value = data.opration.join('');
         console.log('2')
     }
@@ -102,13 +130,44 @@ function clearResulteAndOprationNumber() {
 
 function calculate() {
     console.log(data.resulte);
+    k++;
     document.querySelector('.calculator__header__number-output').value = data.resulte.join('');
+    dataForMemory.resulte.push(data.resulte.join(''));
     save = data.resulte.slice(0, -1).join('');
     document.querySelector('.calculator__header__number-input').value = changeStringToNumberExprission(save);
-    console.log(save, changeStringToNumberExprission(save));
+    dataForMemory.opration.push(changeStringToNumberExprission(save));
+    data.opration = [];
+    data.opration.push(changeStringToNumberExprission(save));
+    console.log(save, changeStringToNumberExprission(save), data.opration);
+    saveInHistory();
+}
+/* ..............................Negative number Or Positive number................................. */
+
+function negativeOrPositiveNumber() {
+    let saveResulte = data.opration.join('');
+    saveResulte = (-saveResulte);
+    operationOnNumbers(saveResulte);
 }
 
-/*..............................function independent to button...................................... */
+/* ................................. one number divided by X ....................................... */
+function oneDividedByNumber() {
+    let saveResulte = data.opration.join('');
+    saveResulte = (1 / saveResulte)
+    operationOnNumbers(saveResulte);
+}
+/* ........................................ square of number ....................................... */
+function squareOfNumber() {
+    let saveResulte = data.opration.join('');
+    saveResulte = (saveResulte ** 2)
+    operationOnNumbers(saveResulte);
+}
+/* ........................................ radical of number ....................................... */
+function radicalOfNumber() {
+    let saveResulte = data.opration.join('');
+    saveResulte = (Math.sqrt(saveResulte))
+    operationOnNumbers(saveResulte);
+}
+/*.......................................................................function independent to button............................................................. */
 
 function checkOutputResult() {
     let save0 = changeStringToNumberExprission(data.resulte.slice(0, -2).join(''));
@@ -123,11 +182,30 @@ function checkOutputResult() {
     data.opration = [];
 }
 
+function operationOnNumbers(saveResulte) {
+
+    console.log(data.resulte);
+    if (data.resulte.includes('=')) {
+        data.resulte = [];
+        data.resulte.push(saveResulte);
+        document.querySelector('.calculator__header__number-input').value = saveResulte;
+        console.log(data.opration, data.resulte)
+        data.opration = [];
+    } else {
+        data.resulte.splice(data.resulte.length - data.opration.length, data.opration.length)
+        data.resulte.push(saveResulte);
+        document.querySelector('.calculator__header__number-input').value = saveResulte;
+        console.log(data.opration, data.resulte)
+        data.opration = [];
+    }
+
+}
+
 function inputResult() {
     document.querySelector('.calculator__header__number-input').value = data.opration.join('');
 }
 
-function outputResult() {
+function outputResultClickOnMultiplicationAndDivision() {
     if (data.resulte.includes('=')) {
         checkOutputResult();
     } else {
@@ -137,7 +215,7 @@ function outputResult() {
 
 }
 
-function outputResult2() {
+function outputResultClickOnAdditionAndSubtraction() {
     if (data.resulte.includes('=')) {
         checkOutputResult();
     } else {
@@ -148,18 +226,35 @@ function outputResult2() {
     }
 }
 
-/* ..............................Negative number Or Positive number................................. */
+/* ................................................Button Memory And History.................................................. */
 
-function negativeOrPositiveNumber() {
-    let saveResulte = data.opration.join('');
-    saveResulte = (-saveResulte);
-    data.resulte.splice(data.resulte.length - data.opration.length , data.opration.length)
-    data.opration = [];
-    data.resulte.push(saveResulte);
-    document.querySelector('.calculator__header__number-input').value  = saveResulte;
-    console.log(data.opration,data.resulte)
+function historyFunction() {
+    memoryLinkBtn.classList.remove('memory-history__link--border');
+    historyLinkBtn.classList.add('memory-history__link--border');
 }
 
-// var fruits = ["Banana", "Orange", "Apple", "Mango"];
-// fruits.splice(fruits.length - 2, 2);
-// console.log(fruits);
+function memoryFunction() {
+    historyLinkBtn.classList.remove('memory-history__link--border');
+    memoryLinkBtn.classList.add('memory-history__link--border')
+}
+
+/* ....................*/
+
+function saveInHistory() {
+    let resulteTag = document.createElement('div');
+    resulteTag.setAttribute('class', 'resulteTag');
+    resulteTag.classList.add('resulteTag');
+    memoryHistoryResult.appendChild(resulteTag);
+    let resulteTagOutput = document.createElement('div');
+    resulteTagOutput.setAttribute('class', `resulteTagOutput${k}`);
+    resulteTag.appendChild(resulteTagOutput);
+    document.querySelector(`.resulteTagOutput${k}`).style.fontSize = "medium";
+    document.querySelector(`.resulteTagOutput${k}`).innerText = dataForMemory.resulte[dataForMemory.resulte.length - 1];
+    console.log(dataForMemory.resulte[dataForMemory.resulte.length - 1], dataForMemory.resulte);
+    let resulteTagInput = document.createElement('div');
+    resulteTagInput.setAttribute('class', `resulteTagInput${k}`);
+    resulteTag.appendChild(resulteTagInput);
+    console.log(dataForMemory.opration[dataForMemory.opration.length - 1], dataForMemory.opration)
+    document.querySelector(`.resulteTagInput${k}`).style.fontSize = "xx-large";
+    document.querySelector(`.resulteTagInput${k}`).innerText = dataForMemory.opration[dataForMemory.opration.length - 1];
+}

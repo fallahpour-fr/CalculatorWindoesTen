@@ -64,10 +64,10 @@
                 </div>
 
                 <div class="btn-row">
-                    <button class="color2 row-button"><i class="material-icons">&#8543;</i>X</button>
-                    <button class="color2 row-button">x<sup>2</sup></button>
+                    <button class="color2 row-button row-button--oneDividedByX"><i class="material-icons">&#8543;</i>X</button>
+                    <button class="color2 row-button row-button--squareOfNumber">x<sup>2</sup></button>
 
-                    <button class="color2 row-button"><i class="material-icons">
+                    <button class="color2 row-button row-button--radical"><i class="material-icons">
                             &radic;<i style="text-decoration:overline;" id="radical">&nbsp;X&nbsp;</i></i></button>
 
                     <button class="color2 row-button row-button__operator" id="/"><i class="material-icons"> &#247;</i></button>
@@ -104,7 +104,7 @@
                     <button class="color3 row-button row-button__number">0</button>
                     <button class="color3 row-button row-button__number
                     ">.</button>
-                    <button class="equal row-button row-button__equal row-button__operator" id="="><i class="material-icons">&#61;</i></button>
+                    <button class="equal row-button row-button__equal row-button__operator " id="=">=</i></button>
 
                 </div>
 
@@ -115,9 +115,12 @@
 
         <div class="memory-history">
             <ul class="memory-history__container">
-                <li class="memory-history__link memory-history__link--border"><a class="" href="#">History</a></li>
-                <li class="memory-history__link"><a href="#">Memory</a></li>
+                <li class="memory-history__link memory-history__link--border historyLink"><a href="#">History</a></li>
+                <li class="memory-history__link  memoryLink"><a href="#">Memory</a></li>
             </ul>
+            <div class="memory-history__result">
+
+            </div>
         </div>
 
 
