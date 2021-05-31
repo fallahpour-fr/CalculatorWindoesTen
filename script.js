@@ -15,7 +15,12 @@ const radicalOfNumberBtn = document.querySelector('.row-button--radical');
 // const memoryAndHistoryLink = document.querySelector('.memory-history__link');
 const memoryLinkBtn = document.querySelector('.memoryLink');
 const historyLinkBtn = document.querySelector('.historyLink');
-const memoryHistoryResult = document.querySelector('.memory-history__result')
+const memoryHistoryResult = document.querySelector('.memory-history__result');
+const recycleButton = document.querySelector('.memory-history__recycle__icon');
+const recyclePart = document.querySelector('.memory-history__recycle');
+let j = 0;
+let resulteTagContainer = document.createElement('div');
+resulteTagContainer.setAttribute('class', `resulteTagContainer${j}`);
 let save = 0;
 let k = 0;
 let data = {
@@ -43,8 +48,9 @@ negetiveOrPositiveBtn.addEventListener('click', negativeOrPositiveNumber);
 oneDividedByNumberBtn.addEventListener('click', oneDividedByNumber);
 squareOfNumberBtn.addEventListener('click', squareOfNumber);
 radicalOfNumberBtn.addEventListener('click', radicalOfNumber);
-historyLinkBtn.addEventListener('click', historyFunction);
-memoryLinkBtn.addEventListener('click', memoryFunction);
+historyLinkBtn.addEventListener('click', historylink);
+memoryLinkBtn.addEventListener('click', memorylink);
+recycleButton.addEventListener('click', clearHistoryPart)
 
 /* ...........................................................function ependent to button .................................................................. */
 
@@ -57,14 +63,14 @@ function changeStringToNumberExprission(str) {
 function addNumberToArray(e) {
     let element = e.target;
     console.log(data.resulte);
-    if (data.resulte.indexOf('=')>-1) {
+    if (data.resulte.indexOf('=') > -1) {
         data.resulte = [];
         data.opration = [];
         data.resulte.push(element.innerText);
         data.opration.push(element.innerText);
         document.querySelector('.calculator__header__number-output').value = '';
         console.log('equal');
-    } else if (element.innerText=='.' && data.resulte.includes('.') && data.opration.includes('.')) {
+    } else if (element.innerText == '.' && data.resulte.includes('.') && data.opration.includes('.')) {
         data.resulte.push();
         data.opration.push();
     } else {
@@ -228,12 +234,12 @@ function outputResultClickOnAdditionAndSubtraction() {
 
 /* ................................................Button Memory And History.................................................. */
 
-function historyFunction() {
+function historylink() {
     memoryLinkBtn.classList.remove('memory-history__link--border');
     historyLinkBtn.classList.add('memory-history__link--border');
 }
 
-function memoryFunction() {
+function memorylink() {
     historyLinkBtn.classList.remove('memory-history__link--border');
     memoryLinkBtn.classList.add('memory-history__link--border')
 }
@@ -241,10 +247,12 @@ function memoryFunction() {
 /* ....................*/
 
 function saveInHistory() {
+    recyclePart.classList.remove('hidden');
+    memoryHistoryResult.appendChild(resulteTagContainer);
     let resulteTag = document.createElement('div');
     resulteTag.setAttribute('class', 'resulteTag');
     resulteTag.classList.add('resulteTag');
-    memoryHistoryResult.appendChild(resulteTag);
+    resulteTagContainer.appendChild(resulteTag);
     let resulteTagOutput = document.createElement('div');
     resulteTagOutput.setAttribute('class', `resulteTagOutput${k}`);
     resulteTag.appendChild(resulteTagOutput);
@@ -257,4 +265,11 @@ function saveInHistory() {
     console.log(dataForMemory.opration[dataForMemory.opration.length - 1], dataForMemory.opration)
     document.querySelector(`.resulteTagInput${k}`).style.fontSize = "xx-large";
     document.querySelector(`.resulteTagInput${k}`).innerText = dataForMemory.opration[dataForMemory.opration.length - 1];
+}
+
+function clearHistoryPart() {
+    resulteTagContainer.style.display = 'none';
+    j++;
+    resulteTagContainer = document.createElement('div');
+    resulteTagContainer.setAttribute('class', `resulteTagContainer${j}`);
 }

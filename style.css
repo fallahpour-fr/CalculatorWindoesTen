@@ -14,7 +14,7 @@
         -5px -5px 10px #bcc0bb;
     --backgraundColor: #f1f2f6;
     --MemoryAndHistoryBorderBottom: rgb(0, 140, 255);
-    --scrollColor: #888888;
+    --scrollColor: #a5a5a5;
     --active-button: rgb(160, 160, 160);
     --color2-backgraund: #dfe4ea;
     --color3-backgraund: #ffffff;
@@ -169,7 +169,7 @@ body {
 .row-button {
     margin: 1px;
     width: 24.82%;
-    padding: 1.3em;
+    padding: 1.36em;
     border: 1px solid black;
     text-align: center;
     align-items: baseline;
@@ -202,7 +202,7 @@ body {
     transition: 0.5s;
 }
 
-/*...................................................................memory and history.....................................*/
+/*...................................................................memory and history........................................................*/
 .memory-history {
     width: 330px;
     height: 100vh;
@@ -215,7 +215,6 @@ body {
 
 .memory-history::-webkit-scrollbar {
     width: 8px;
-    min-height: 1px;
 }
 
 .memory-history::-webkit-scrollbar-thumb {
@@ -229,6 +228,12 @@ body {
 
 .memory-history__container {
     list-style-type: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: var(--backgraundColor);
+    width: 320px;
+    padding: 0.3em;
 }
 
 .memory-history__link {
@@ -256,11 +261,38 @@ body {
     display: none;
 }
 
+.memory-history__result{
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
 .resulteTag {
     background-color: yellow;
     width: 95%;
-    padding: 0.5em;
+    padding: 0.2em;
     margin: 15px 10px;
     text-align: right;
+    cursor: pointer;
 }
 
+.memory-history__recycle{
+    position: fixed;
+    width: 320px;
+    padding: 0.1em;
+    text-align: right;
+    bottom: 0;
+    right: 0;
+    background-color: var(--backgraundColor);
+}
+
+.memory-history__recycle__icon{
+    font-size: 1em;
+    padding:0.4em;
+    margin: 2px;
+    cursor: pointer;
+    border: none;
+}
+
+.memory-history__recycle__icon:hover{
+    background-color: var(--color2-backgraund);
+}
