@@ -80,7 +80,6 @@ function addNumberToArray(e) {
     }
 
 
-
     console.log(data.resulte, data.opration);
     inputResult();
 };
@@ -144,7 +143,8 @@ function calculate() {
     dataForMemory.opration.push(changeStringToNumberExprission(save));
     data.opration = [];
     data.opration.push(changeStringToNumberExprission(save));
-    console.log(save, changeStringToNumberExprission(save), data.opration);
+    console.log(save, changeStringToNumberExprission(save), data.opration, data.resulte.join(''));
+    saveData();
     saveInHistory();
 }
 /* ..............................Negative number Or Positive number................................. */
@@ -265,6 +265,11 @@ function saveInHistory() {
     console.log(dataForMemory.opration[dataForMemory.opration.length - 1], dataForMemory.opration)
     document.querySelector(`.resulteTagInput${k}`).style.fontSize = "xx-large";
     document.querySelector(`.resulteTagInput${k}`).innerText = dataForMemory.opration[dataForMemory.opration.length - 1];
+    resulteTag.addEventListener('click', function () {
+        console.log('hi');
+    })
+
+    // viewData();
 }
 
 function clearHistoryPart() {
@@ -272,4 +277,32 @@ function clearHistoryPart() {
     j++;
     resulteTagContainer = document.createElement('div');
     resulteTagContainer.setAttribute('class', `resulteTagContainer${j}`);
+}
+
+//save data in storage
+function saveData() {
+
+    if (localStorage.getItem('dataResult') === null) {
+        localStorage.setItem('dataResult', '[]');
+    }
+    let oldDataResult = JSON.parse(localStorage.getItem('dataResult'));
+    oldDataResult.push(dataForMemory.resulte);
+    localStorage.setItem('dataResult', JSON.stringify(oldDataResult));
+
+
+
+    if (localStorage.getItem('dataOpration') === null) {
+        localStorage.setItem("dataOpration", '[]');
+    }
+    let oldDataOpration = JSON.parse(localStorage.getItem('dataOpration'));
+    oldDataOpration.push(changeStringToNumberExprission(save));
+    localStorage.setItem('dataOpration', JSON.stringify(oldDataOpration));
+
+}
+
+function viewData(){
+
+    if(localStorage.getItem('dataResult') != null){
+        
+    }
 }
