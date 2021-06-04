@@ -267,7 +267,7 @@ body {
 }
 
 .resulteTag {
-    background-color: yellow;
+    background-color: var(--color2-backgraund);
     width: 95%;
     padding: 0.2em;
     margin: 15px 10px;

@@ -22,15 +22,28 @@ let j = 0;
 let resulteTagContainer = document.createElement('div');
 resulteTagContainer.setAttribute('class', `resulteTagContainer${j}`);
 let save = 0;
-let k = 0;
+let k, m, n;
 let data = {
     opration: [],
     resulte: []
 }
-let dataForMemory = {
-    opration: [],
-    resulte: []
+let dataForMemory;
+let saveDataLocalstorage = localStorage.getItem('SaveData');
+if (saveDataLocalstorage) {
+    dataForMemory = JSON.parse(saveDataLocalstorage);
+    m = dataForMemory.resulte.length;
+    n = dataForMemory.opration.length;
+    saveInHistoryRelode();
+} else {
+    dataForMemory = {
+        opration: [],
+        resulte: []
+    }
+    k = 0;
+    m = 0;
+    n = 0;
 }
+
 /* ..........................................................addEventListener........................................... */
 
 numberButton.forEach(element => {
@@ -144,7 +157,7 @@ function calculate() {
     data.opration = [];
     data.opration.push(changeStringToNumberExprission(save));
     console.log(save, changeStringToNumberExprission(save), data.opration, data.resulte.join(''));
-    saveData();
+    localStorage.setItem('SaveData', JSON.stringify(dataForMemory));
     saveInHistory();
 }
 /* ..............................Negative number Or Positive number................................. */
@@ -254,22 +267,22 @@ function saveInHistory() {
     resulteTag.classList.add('resulteTag');
     resulteTagContainer.appendChild(resulteTag);
     let resulteTagOutput = document.createElement('div');
-    resulteTagOutput.setAttribute('class', `resulteTagOutput${k}`);
+    resulteTagOutput.setAttribute('class', `resulteTagOutput${m}`);
     resulteTag.appendChild(resulteTagOutput);
-    document.querySelector(`.resulteTagOutput${k}`).style.fontSize = "medium";
-    document.querySelector(`.resulteTagOutput${k}`).innerText = dataForMemory.resulte[dataForMemory.resulte.length - 1];
-    console.log(dataForMemory.resulte[dataForMemory.resulte.length - 1], dataForMemory.resulte);
+    document.querySelector(`.resulteTagOutput${m}`).style.fontSize = "medium";
+    document.querySelector(`.resulteTagOutput${m}`).innerText = dataForMemory.resulte[m];
+    console.log(dataForMemory.resulte[m], dataForMemory.resulte);
     let resulteTagInput = document.createElement('div');
-    resulteTagInput.setAttribute('class', `resulteTagInput${k}`);
+    resulteTagInput.setAttribute('class', `resulteTagInput${n}`);
     resulteTag.appendChild(resulteTagInput);
-    console.log(dataForMemory.opration[dataForMemory.opration.length - 1], dataForMemory.opration)
-    document.querySelector(`.resulteTagInput${k}`).style.fontSize = "xx-large";
-    document.querySelector(`.resulteTagInput${k}`).innerText = dataForMemory.opration[dataForMemory.opration.length - 1];
+    console.log(dataForMemory.opration[n], dataForMemory.opration)
+    document.querySelector(`.resulteTagInput${n}`).style.fontSize = "xx-large";
+    document.querySelector(`.resulteTagInput${n}`).innerText = dataForMemory.opration[n];
     resulteTag.addEventListener('click', function () {
         console.log('hi');
     })
-
-    // viewData();
+    n++;
+    m++;
 }
 
 function clearHistoryPart() {
@@ -280,29 +293,27 @@ function clearHistoryPart() {
 }
 
 //save data in storage
-function saveData() {
-
-    if (localStorage.getItem('dataResult') === null) {
-        localStorage.setItem('dataResult', '[]');
+function saveInHistoryRelode() {
+    recyclePart.classList.remove('hidden');
+    memoryHistoryResult.appendChild(resulteTagContainer);
+   
+    for (let i = 0; i < m; i++) {
+        let resulteTag = document.createElement('div');
+        resulteTag.setAttribute('class', 'resulteTag');
+        resulteTag.classList.add('resulteTag');
+        resulteTagContainer.appendChild(resulteTag);
+        let resulteTagOutput = document.createElement('div');
+        resulteTagOutput.setAttribute('class', `resulteTagOutput${i}`);
+        resulteTag.appendChild(resulteTagOutput);
+        document.querySelector(`.resulteTagOutput${i}`).style.fontSize = "medium";
+        document.querySelector(`.resulteTagOutput${i}`).innerText = dataForMemory.resulte[i];
+        console.log(dataForMemory.resulte[i], dataForMemory.resulte);
+        let resulteTagInput = document.createElement('div');
+        resulteTagInput.setAttribute('class', `resulteTagInput${i}`);
+        resulteTag.appendChild(resulteTagInput);
+        console.log(dataForMemory.opration[i], dataForMemory.opration)
+        document.querySelector(`.resulteTagInput${i}`).style.fontSize = "xx-large";
+        document.querySelector(`.resulteTagInput${i}`).innerText = dataForMemory.opration[i],i;
     }
-    let oldDataResult = JSON.parse(localStorage.getItem('dataResult'));
-    oldDataResult.push(dataForMemory.resulte);
-    localStorage.setItem('dataResult', JSON.stringify(oldDataResult));
-
-
-
-    if (localStorage.getItem('dataOpration') === null) {
-        localStorage.setItem("dataOpration", '[]');
-    }
-    let oldDataOpration = JSON.parse(localStorage.getItem('dataOpration'));
-    oldDataOpration.push(changeStringToNumberExprission(save));
-    localStorage.setItem('dataOpration', JSON.stringify(oldDataOpration));
-
-}
-
-function viewData(){
-
-    if(localStorage.getItem('dataResult') != null){
-        
-    }
+ 
 }
